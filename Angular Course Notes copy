@@ -1,0 +1,87 @@
+Angular Master class notes
+
+
+main.ts - bootstrap class
+karma.ts - config for karma test config
+package.json -> dependancies
+tsconfig.ts -> settings for TS compilier that will compile from TS to JS
+tslint.json -> static analysis tool for TS
+
+WebPack
+- Tool that bundles, scripts into bundles (runtime, styles,main,vendor) and minifies
+- Auto recompiles on changes
+- Hot module reloading
+- The bundles are referenced in the .html, automatically injected into the page
+
+
+TypeScript Fundamentals
+-----------------------
+- Strong Typed (optional)
+- Compile time errors
+- Superset of Javascript
+- browsers don't understand TS, need to "transpile" to JS
+- 'tsc' used to transpile between JS to TS
+
+Variables
+- In JS 'var' will be scoped to nearest method. Therefore even if var is declared in for loop, will still be available within the method
+- In TS 'let' will scope variable like standard Java 
+- Better to use let rather than var
+
+let a: number;
+let b: boolean;
+let e: number[] = [1,2,3];
+let f: any[] = [1,true,3];
+
+enum Color {Red=0, Blue=1, Green=2};
+let background = Color.Blue;    
+
+
+Components 
+----------
+Component encapsulates (Data, HTML Template, Logic)
+Promotes component based architecture, trying to reuse componentd
+- Every app has at least one component 'App'
+- Components are a tree structure all from App/Root component
+
+Displaying Data and Handling Events
+-----------------------------------
+- Interpolation and Properties
+  <img src = {{ imageUrl }}>   -- string Interpolation 
+  <img [src] = "imageUrl" >    -- property binding
+  The compiler actually converts the sring interpolatin to the property binding. 
+- PropertyBinding - will only work one way, from component -> DOM 
+- Style / Class, inline binding
+
+DOM 
+- tree structure of objects in memory
+- HTML page is parsed into a DOM, this is usually a 1-2 between DOM object and HMTL element and it's attributes
+  Similar not always a DOM object and HTML element 
+  i.e. <td colspan> -- there is no corresponding DOM object 
+- Event Bubbling 
+  - events bubble up the DOM unless we use $event.stopPropogation() within handler
+- binding 
+  - property binding e.g. <input [input]=....> is 1 way from comp to view
+  - should use 'ngModel' directive for 2 way binding <input [{ngMode}]="email" ....>
+ 
+- Pipes 
+ - number of built in pipes available
+ - {{ filename | uppercase}
+ - {{ price | currency:'AUD' }} -- convert to aussie 
+ - {{ aDate | date:'shortDate' }}
+ - custom pipes
+   
+
+
+
+
+
+
+Commands (Angular CLI)
+----------------------
+$ ng generate component or 'ng g c' -- generates component TS files and will auto inject into AppModule
+  - new component files created in their own directory
+$ ng new my-dream-app -- creates new angular app
+$ ng g s <serviceName>
+$npm install bootstrap --save   // Adding bootstrap as a dependancy, save will add bootstrap as a dependancy in package.json
+
+
